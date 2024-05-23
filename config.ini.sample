@@ -1,0 +1,5 @@
+[DB]
+USER=<user name>
+PASS=<your pass>
+DB_NAME=<db name>
+DOMAIN=<if needed>

@@ -11,6 +11,10 @@ class AuthorsSpider(scrapy.Spider):
             next_links = quote.xpath("//html//div[@class='quote']/span/a/@href").extract()
             for link in next_links:
                 yield scrapy.Request(url=self.start_urls[0] + link, callback=self.access_details)
+        
+        next_link = response.xpath("//li[@class='next']/a/@href").get()
+        if next_link:
+            yield scrapy.Request(url=self.start_urls[0] + next_link)
 
     def access_details(self, response):
         for auth in response.xpath("/html//div[@class='author-details']"):
